@@ -7,7 +7,7 @@ after this you must migrate and update-database next step click run
 
 
 #If you want to use in docker 
-# you must check docker and if it is off you need to fix it
+you must check docker and if it is off you need to fix it
 next step you're write 
       #docker-compose build
       #docker-compose up
