@@ -14,3 +14,7 @@ next step you're write
       #docker-compose build
       #docker-compose up
 and docker opens new ports
+Second you must change appsetings.json 
+"ConnectionStrings": {
+    "DefaultConnectionStrings": "Host=You Datbase Name;Port=5432;Database=YOUR DATABASE;Username=postgres;Password=YOUR PASSWORD;"
+  },
