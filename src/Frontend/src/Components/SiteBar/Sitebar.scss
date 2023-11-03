@@ -1,0 +1,196 @@
+.Modile {
+    display: none !important;
+}
+.foods-length{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ee4e31;
+    border: 2px solid #EA7C69;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Decktop {
+    width: 7vw;
+    height: 100vh;
+    background: #1F1D2B;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: end;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+
+    .col-2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0 10px 18px;
+        width: 96px;
+        height: 80px;
+        border-left: 200px;
+        border-radius: 20px;
+        position: relative;
+        transition: .4s;
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.6em;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            z-index: 1;
+            transition: .4s;
+
+            i {
+                color: #EA7C69;
+                transition: .4s;
+            }
+        }
+
+    }
+
+    .col-2:hover {
+        background: #252836;
+
+        div {
+            background-color: #EA7C69;
+
+            i {
+                color: white;
+            }
+        }
+
+    }
+
+    .col-2:hover:after {
+        position: absolute;
+        content: "";
+        z-index: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #252836;
+        border-radius: 12px 0 0 12px;
+    }
+}
+
+.active {
+    i {
+        color: white !important;
+    }
+}
+
+div .active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    z-index: 1;
+    transition: .4s;
+    background-color: #EA7C69;
+}
+
+.active-link {
+    background: #252836;
+}
+
+.active-link:after {
+    position: absolute;
+    content: "";
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #252836;
+    border-radius: 12px 0 0 12px;
+}
+
+@media (max-width:726px) {
+
+
+    .Decktop {
+        display: none !important;
+    }
+
+    .Modile {
+        z-index: 1;
+        width: 100vw;
+        height: 70px;
+        background: #1F1D2B;
+        display: flex !important;
+        justify-content: space-around;
+        align-items: end;
+        position: fixed;
+        bottom: 0;
+        right: 0px;
+        left: 0px;
+
+        .siteBarCard{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px 0 10px 0;
+            width: 70px;
+            height: 60px;
+            border-left: 200px;
+            border-radius: 20px;
+            position: relative;
+            transition: .4s;
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1em;
+                width: 50px;
+                height: 50px;
+                border-radius: 10px;
+                z-index: 1;
+                transition: .4s;
+
+                i {
+                    color: #EA7C69;
+                    transition: .4s;
+
+                }
+            }
+
+        }
+        .active-link:after {
+            position: absolute;
+            content: "";
+            z-index: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #252836;
+            border-radius: 0px 0 12px 12px;
+        }
+    }
+    .foods-length{
+        top: 7px;
+        right: 17px;
+        width: 15px;
+        height: 15px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+}

@@ -1,0 +1,73 @@
+.body{
+}
+.delay-container{
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 10;
+}
+.delay-animation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 120px;
+    height: 120px;
+    margin: 300px auto;
+    position: relative;
+    background: none;
+
+}
+.delay-animation div{
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    background-color: purple;
+    margin: 5px;
+    animation: animat1 1s infinite linear;
+
+}
+.delay-animation div:first-child{
+    animation-delay: -0.2s;
+}
+.delay-animation div:last-child{
+    animation-delay: -0.4s;
+}
+.delay-animation div:nth-child(2){
+    animation-delay: -0.6s;
+}
+.delay-animation div:nth-child(3){
+    animation-delay: -0.8s;
+}
+.delay-animation div:nth-child(4){
+    animation-delay: -1s;
+}
+.delay-animation div:nth-child(5){
+    animation-delay: -1.2s;
+}
+.delay-animation div:nth-child(6){
+    animation-delay: -1.4s;
+}
+.delay-animation div:nth-child(7){
+    animation-delay: -1.6s;
+}
+.delay-animation div:nth-child(8){
+    animation-delay: -1.8s;
+}
+@keyframes animat1 {
+    0%{
+        opacity: 1;
+        
+    }
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+
+    }
+}

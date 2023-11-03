@@ -1,0 +1,247 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+
+}
+
+.login-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+.form-box{
+    position: relative;
+    width: 400px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid grey;
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form-value{
+        h2{
+            font-size: 2em;
+            color: #fff;
+            text-align: center;
+        }
+        .inputbox{
+            position: relative;
+            margin: 30px 0;
+            width: 310px;
+            border-bottom: 2px solid #fff;
+            input{
+                width: 100%;
+                height: 50px;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                padding: 0 35px 0 5px;
+                color: #fff;
+                font-size: 0px;
+                transition: 0.5s;
+
+            }
+
+            label{
+                position: absolute;
+                top: 50%;
+                left: 5px;
+                transform: translateY(-50%);
+                color: #fff;
+                font-size: 1em;
+                pointer-events: none;
+                transition: .5s;
+            }
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+                transition: background-color 5500s ease-in-out 0s;
+                -webkit-text-fill-color: white !important;
+            }
+            input:focus{
+                font-size: 1em !important;
+            }
+            input:focus ~ label,
+            input:valid ~ label{
+                top: -5px;
+            }
+
+        }
+        .forget{
+            margin: -15px 0 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: .9em;
+            label{
+                color: #fff;
+                a{
+                    color: #fff;
+                    text-decoration: none;
+                    margin-left: 60px;
+                    transition: .5s;
+                }
+                a:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+        button{
+            width: 100%;
+            height: 40px;
+            border-radius: 40px;
+            background-color: #fff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+        }
+        .register{
+            font-size: .9em;
+            color: #fff;
+            text-align: center;
+            margin: 25px 0 10px;
+        }
+        .register p a{
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+
+        }
+        .register p a:hover
+        {
+                text-decoration: underline;
+        }
+
+    }
+    .LinkToHome{
+        width: 300px;
+        text-decoration: none;
+        color: white;
+        position: absolute;
+        bottom: 20px;
+        left: 40px;
+        font-weight: 600;
+        display: flex;
+        align-items:  center;
+        justify-content: space-between;
+        p{
+            margin: 0;
+            padding: 0;
+            transition: .4s;
+        }
+        div{
+            width: 210px;
+            transition: .4s;
+        }
+
+    }
+    .LinkToHome:hover{
+        color: #EA7C69;
+        div{
+            width: 180px;
+        }
+    }
+}
+
+
+@media (max-width: 425px) {
+    .form-box{
+        width: 300px;
+        height: 350px;
+        border-radius: 20px;
+        .form-value{
+            width: 250px;
+            h2{
+                font-size: 1.5em;
+                color: #fff;
+                text-align: center;
+            }
+            .inputbox{
+                position: relative;
+                margin: 20px 0;
+                width: 250px;
+                border-bottom: 2px solid #fff;
+                input{
+                    width: 100%;
+                    height: 30px;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    padding: 0 35px 0 5px;
+                    color: #fff;
+                    font-size: 0px;
+                    transition: 0.5s;
+    
+                }
+    
+                label{
+                    font-size: .8em;
+                }
+    
+            }
+            .forget{
+                margin: 0px 0 15px;
+                label{
+                    font-size: 0.7em;
+                }
+                label a{
+                    font-size: 1.5em;
+                    cursor: pointer;
+                }
+
+            }
+            button{
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80%;
+                height: 35px;
+                border-radius: 40px;
+                background-color: #fff;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                font-size: 0.8em;
+                font-weight: 600;
+                margin-top: 20px;
+            }
+            .register{
+                font-size: .9em;
+                color: #fff;
+                text-align: center;
+                margin: 25px 0 10px;
+            }
+            .register p a{
+                text-decoration: none;
+                color: #fff;
+                font-weight: 600;
+            }
+            .register p a:hover
+            {
+                    text-decoration: underline;
+            }
+    
+        }
+    }
+    
+}

@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "NGhK4SMcQj+koieHdXOp34H1GWavh+zvl3/Cwmx1iXg=",
+  "Source": "Food",
+  "BasePath": "_content/Food",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Food\\wwwroot",
+      "Source": "Food",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\Git\\FoodFullstack\\Food\\wwwroot\\",
+      "BasePath": "_content/Food",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

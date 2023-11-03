@@ -1,0 +1,304 @@
+.home-page {
+    width: 94vw;
+    height: 100vh;
+    background: #252836;
+    margin-left: 6vw;
+    z-index: -1;
+}
+.loading-item-categoriy{
+    position: relative;
+    left: 50% !important;
+    transform: translateX(-50%);
+    width: 100px !important;
+
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    width: 100%;
+
+    div {
+        h2 {
+            font-weight: 800;
+        }
+
+        color: white;
+    }
+
+    .search {
+        width: 370px;
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid grey;
+
+        input {
+            outline: none;
+            background: none;
+            height: 50px;
+            width: 370px;
+            padding: 0 5px 0 40px;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        i {
+            position: absolute;
+            left: 10px;
+        }
+    }
+}
+
+.categoriy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.425);
+    height: 60px;
+
+    div {
+        color: white;
+        cursor: pointer;
+        height: 60px;
+        position: relative;
+
+        p {
+            height: 60px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            transition: .3s;
+            font-weight: 700;
+            width: 150px;
+            border-bottom: 2px solid #ea7c6900;
+
+        }
+
+        p:hover {
+            color: #EA7C69;
+        }
+
+        .selected {
+            color: #EA7C69;
+        }
+
+        div {
+            transition: .4s;
+            height: 4px;
+        }
+
+        .selected-bottom {
+            position: absolute;
+            bottom: -2px;
+            width: 150px;
+            height: 4px;
+            border-radius: 20px;
+            background: #EA7C69;
+            left: 0;
+        }
+
+    }
+}
+
+.select-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+
+    div {
+        color: white;
+    }
+
+    .select {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 160px;
+        padding: 0 20px;
+        height: 50px;
+        background:
+            #1F1D2B;
+        font-size: 1.2em;
+        border-radius: 10px;
+        border: 1px solid white;
+        position: relative;
+        .select-iteam{
+            background:
+            #1F1D2B;
+            li{
+                a{
+                    color: #EA7C69 !important;
+
+                }
+            }
+            li:hover{
+                a{
+                    background: #EA7C69;
+                    color: white !important;
+                }
+            }
+        }
+    }
+}
+.weather{
+    width: 450px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    p{
+        padding: 0;
+        margin: 0;
+        
+    }
+}
+
+
+@media (max-width:726px) {
+    .home-page {
+        width: 94vw;
+        height: 100vh;
+        background: #252836;
+        margin-left: 6vw;
+        overflow-y: scroll;
+    }
+
+    .home-page {
+        min-width: 100vw;
+        height: 100vh;
+        background: #252836;
+        margin-left: 0px;
+    }
+
+    header {
+        display: block;
+        padding: 20px 20px;
+        height: 160px;
+
+        .search {
+            margin-top: 15px;
+            width: 100%;
+            height: 50px;
+
+            input {
+
+                height: 50px;
+                width: 370px;
+            }
+
+            i {
+                position: absolute;
+                left: 10px;
+            }
+        }
+    }
+
+    .categoriy {
+        padding: 20px 0px;
+        height: 50px;
+        overflow-x: scroll;
+        overflow-y: hidden;
+
+        div {
+            color: white;
+            cursor: pointer;
+            height: 50px;
+
+            p {
+                height: 50px;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+                transition: .3s;
+                font-weight: 700;
+                width: 110px;
+                border-bottom: 2px solid #ea7c6900;
+                font-size: 14px;
+
+            }
+
+            p:hover {
+                color: #EA7C69;
+            }
+
+            .selected {
+                color: #EA7C69;
+                border-bottom: 2px solid #EA7C69;
+            }
+
+            div {
+                transition: .4s;
+                height: 4px;
+            }
+
+            .selected-bottom {
+                position: absolute;
+                bottom: -2px;
+                width: 100px;
+                height: 4px;
+                border-radius: 20px;
+                background: #EA7C69;
+                left: 0;
+            }
+        }
+    }
+
+    .categoriy::-webkit-scrollbar {
+        display: none;
+    }
+
+    .select-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+
+        div {
+            color: white;
+        }
+
+        .select {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 140px;
+            padding: 0 20px;
+            height: 40px;
+            background:
+                #1F1D2B;
+            font-size: 1em;
+            border-radius: 10px;
+            border: 1px solid white;
+            position: relative;
+
+        }
+    }
+    .dropdown-menu{
+        width: 100px !important;
+        background: #252836;
+        color: white !important;
+        border: 1px solid white;
+        li{
+            a{
+                color: white;
+                
+            }
+        }
+    }
+
+
+
+}
