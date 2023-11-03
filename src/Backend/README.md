@@ -1,4 +1,6 @@
 First you need to clone it https://gitlab.com/Akmalov-Asror/Food-Ordering-FullStack.git
+
+
 Second you must change appsetings.json 
 "ConnectionStrings": {
     "DefaultConnectionStrings": "Host=localhost;Port=5432;Database=YOUR DATABASE;Username=postgres;Password=YOUR PASSWORD;"
