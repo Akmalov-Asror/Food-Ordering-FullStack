@@ -5,6 +5,13 @@
     margin-left: 6vw;
     z-index: -1;
 }
+.loading-item-categoriy{
+    position: relative;
+    left: 50% !important;
+    transform: translateX(-50%);
+    width: 100px !important;
+
+}
 
 header {
     display: flex;
@@ -127,7 +134,22 @@ header {
         border-radius: 10px;
         border: 1px solid white;
         position: relative;
+        .select-iteam{
+            background:
+            #1F1D2B;
+            li{
+                a{
+                    color: #EA7C69 !important;
 
+                }
+            }
+            li:hover{
+                a{
+                    background: #EA7C69;
+                    color: white !important;
+                }
+            }
+        }
     }
 }
 .weather{

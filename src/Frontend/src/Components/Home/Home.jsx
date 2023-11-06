@@ -1,17 +1,24 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React, { useState, useEffect } from 'react'
 import './Home.scss'
 import moment from 'moment';
 import Delay from '../Delay/Delay';
 import Card from './Card';
 import Data from '../../Utils/Data';
+
 export default function Home() {
     const [weatherArray, setWeatherArray] = useState('')
     const [isLoading, setIsLoading] = useState(true);
-    const [selectedItem, setSelectedItem] = useState(0);
+    const [selectedItem, setSelectedItem] = useState(1);
     const [open, setOpen] = useState(false)
     const [selectVal, setSelectVal] = useState("choose")
+    // Api
+    const [categoriy, setCategoriy] = useState([])
+    // Api
 
+    // search
+    const [ searchVal, setSearchVal] = useState("")
+    const [userEmail, setuserEmail] = useState("")
     const date = moment();
     const formated = date.format("dddd, D MMM YYYY")
     const handleItemClick = (index) => {
@@ -28,11 +35,11 @@ export default function Home() {
         }
         setOpen(false)
     }
+    
     useEffect(() => {
         
-
         let sorts = localStorage.getItem("sort")
-        if (sorts != "") {
+        if (sorts?.length > 0) {
             setSelectVal(sorts)
         }
         else {
@@ -49,63 +56,64 @@ export default function Home() {
             clearTimeout(redirectTimeout);
         };
     }, [])
-    useEffect(() =>{
+    useEffect(() => {
         Data.GetWeather()
-        .then(response =>{
-            setWeatherArray(response)
-        })
-    })
+            .then(response => {
+                setWeatherArray(response)
+            })
+    }, [])
+    useEffect(() => {
+        Data.GetCategoriy()
+            .then(response => {
+                setCategoriy(response)
+            })
+    }, [])
+    useEffect(()=>{
+        const cur = localStorage.getItem("email")
+        setuserEmail(cur)
+    },[userEmail])
+
+    // useEffect(()=>{
+
+    // },[searchVal])
     const Header = (
         <div>
-            <header>
+            <header className='overflow-hidden'>
                 <div>
                     <h2>Ташкент</h2>
-                    <div className='weather'>
-                    <p >{formated}</p>
-                    <div className='d-flex'><p>{Math.floor(weatherArray?.main?.temp - 273 ) + "°C"}</p> <p className='mx-3'>{weatherArray?.weather?.length > 0 && weatherArray?.weather?.map(iteam =>{
-                        return(
-                            <p>{iteam?.description}</p>
-                        )
-                    })}</p> </div>
-              
+                    <div className="weather">
+                        <p>{formated}</p>
+                        <div className="d-flex ">
+                            <p>{Math.floor(weatherArray?.main?.temp - 273) + "°C"}</p>
+                            <span className="mx-3 ">
+                                {weatherArray?.weather?.length > 0 &&
+                                    weatherArray?.weather?.map((item, index) => {
+                                        return <span key={index}>{item?.description}</span>;
+                                    })}
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div>
-                    <div className='search'>
+                    <div className="search">
                         <i className="bi bi-search"></i>
-                        <input type="search" placeholder='Search for food, coffe, etc..' name="" id="" />
+                        <input onChange={(i) =>setSearchVal(i.target.value)} type="search" placeholder="Search for food, coffee, etc.." name="" id="" />
                     </div>
                 </div>
             </header>
         </div>
-    )
+    );
     const Categoriy = (
         <div>
             <div className='categoriy'>
-                <div>
-                    <p className={`categoriy-iteam ${selectedItem === 0 ? 'selected' : ''}`} onClick={() => handleItemClick(0)}>HotDefsdf</p>
-                    <div className={`categoriy-iteam ${selectedItem === 0 ? 'selected-bottom' : ''}`}></div>
-                </div>
-                <div>
-                    <p className={`categoriy-iteam ${selectedItem === 1 ? 'selected' : ''}`} onClick={() => handleItemClick(1)} >HotDefsdf</p>
-                    <div className={`categoriy-iteam ${selectedItem === 1 ? 'selected-bottom' : ''}`}></div>
-                </div>
-                <div>
-                    <p className={`categoriy-iteam ${selectedItem === 2 ? 'selected' : ''}`} onClick={() => handleItemClick(2)}>HotDefsdf</p>
-                    <div className={`categoriy-iteam ${selectedItem === 2 ? 'selected-bottom' : ''}`}></div>
-                </div>
-                <div>
-                    <p className={`categoriy-iteam ${selectedItem === 3 ? 'selected' : ''}`} onClick={() => handleItemClick(3)}>HotDefsdf</p>
-                    <div className={`categoriy-iteam ${selectedItem === 3 ? 'selected-bottom' : ''}`}></div>
-                </div>
-                <div>
-                    <p className={`categoriy-iteam ${selectedItem === 4 ? 'selected' : ''}`} onClick={() => handleItemClick(4)}>HotDefsdf</p>
-                    <div className={`categoriy-iteam ${selectedItem === 4 ? 'selected-bottom' : ''}`}></div>
-                </div>
-                <div>
-                    <p className={`categoriy-iteam ${selectedItem === 5 ? 'selected' : ''}`} onClick={() => handleItemClick(5)}>HotDefsdf</p>
-                    <div className={`categoriy-iteam ${selectedItem === 5 ? 'selected-bottom' : ''}`}></div>
-                </div>
+                {categoriy?.length > 0 ? categoriy?.map((iteam, index) => {
+                    return (
+                        <div key={index}>
+                            <p className={`categoriy-iteam ${selectedItem === iteam.id ? 'selected' : ''}`} onClick={() => handleItemClick(iteam.id)}>{iteam.name}</p>
+                            <div className={`categoriy-iteam ${selectedItem === iteam.id ? 'selected-bottom' : ''}`}></div>
+                        </div>
+                    )
+                }) : <></>}
             </div>
         </div>
     )
@@ -122,10 +130,10 @@ export default function Home() {
                     <div className='select' type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {open ? <i className="bi bi-arrow-up-short"></i> : <i className="bi bi-arrow-down-short"></i>} <div>{selectVal}</div>
                         <ul className={`${open ? "open-select" : ""} dropdown-menu select-iteam`}>
-                            <li><a class="dropdown-item" href="#" onClick={() => valueSelect("Count")}>Count</a></li>
-                            <li><a class="dropdown-item" href="#" onClick={() => valueSelect("Price")}>Price</a></li>
-                            <li><a class="dropdown-item" href="#" onClick={() => valueSelect("Name")} >name</a></li>
-                            <li><a class="dropdown-item" onClick={() => valueSelect()} >Delete</a></li>
+                            <li><a className="dropdown-item text-ligth fw-bold" href="#" onClick={() => valueSelect("Count")}>Count</a></li>
+                            <li><a className="dropdown-item text-ligth fw-bold" href="#" onClick={() => valueSelect("Price")}>Price</a></li>
+                            <li><a className="dropdown-item text-ligth fw-bold" href="#" onClick={() => valueSelect("Name")} >name</a></li>
+                            <li><a className="dropdown-item text-ligth fw-bold" onClick={() => valueSelect()} >Delete</a></li>
                         </ul>
                     </div>
                 </div>
@@ -140,7 +148,7 @@ export default function Home() {
                         {Header}
                         {Categoriy}
                         {Select}
-                        <Card />
+                        <Card search={searchVal} categoriyId={selectedItem} />
                     </div>
                 </div>
             </>}

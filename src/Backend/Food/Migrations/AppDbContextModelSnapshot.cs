@@ -72,6 +72,31 @@ namespace Food.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("Food.Entities.Commit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("WriteCommitTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Commits");
+                });
+
             modelBuilder.Entity("Food.Entities.Food", b =>
                 {
                     b.Property<int>("Id")
@@ -86,6 +111,9 @@ namespace Food.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("integer");
 
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text");
@@ -98,11 +126,35 @@ namespace Food.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Foods");
+                });
+
+            modelBuilder.Entity("Food.Entities.Hide", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Hides");
                 });
 
             modelBuilder.Entity("Food.Entities.Information", b =>
@@ -145,25 +197,24 @@ namespace Food.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("EOrderType")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("EStatus")
+                        .HasColumnType("integer");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
+                    b.Property<int>("FoodId")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("numeric");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("FoodId");
 
                     b.ToTable("Orders");
                 });
@@ -198,6 +249,73 @@ namespace Food.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Payment");
+                });
+
+            modelBuilder.Entity("Food.Entities.PaymentForOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CardPassword")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TableNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentForOrders");
+                });
+
+            modelBuilder.Entity("Food.Entities.SellerFood", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SellerFoods");
                 });
 
             modelBuilder.Entity("Food.Entities.User", b =>
@@ -292,19 +410,19 @@ namespace Food.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "261dc373-1db0-4278-88d9-aa6440105c08",
+                            Id = "26bb343e-aaf0-436f-b410-c5f8efe5802b",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "57427abb-05c7-4e37-9233-e67966ed3f24",
+                            Id = "09e3c6c7-264a-43a1-ab17-ba7a2fb498a1",
                             Name = "OWNER",
                             NormalizedName = "OWNER"
                         },
                         new
                         {
-                            Id = "94842cb6-6cdb-4355-ae99-1576b7daf4bf",
+                            Id = "3072fd7d-087f-411d-a587-b2d7436f01e5",
                             Name = "CUSTOMER",
                             NormalizedName = "CUSTOMER"
                         });
@@ -416,11 +534,31 @@ namespace Food.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Food.Entities.Commit", b =>
+                {
+                    b.HasOne("Food.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Food.Entities.Food", b =>
                 {
                     b.HasOne("Food.Entities.Category", null)
                         .WithMany("Food")
                         .HasForeignKey("CategoryId");
+                });
+
+            modelBuilder.Entity("Food.Entities.Order", b =>
+                {
+                    b.HasOne("Food.Entities.Food", "Food")
+                        .WithMany()
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Food");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

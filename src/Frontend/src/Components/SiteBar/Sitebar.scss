@@ -1,7 +1,22 @@
 .Modile {
     display: none !important;
 }
-
+.foods-length{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ee4e31;
+    border: 2px solid #EA7C69;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .Decktop {
     width: 7vw;
     height: 100vh;
@@ -169,5 +184,13 @@ div .active {
             background: #252836;
             border-radius: 0px 0 12px 12px;
         }
+    }
+    .foods-length{
+        top: 7px;
+        right: 17px;
+        width: 15px;
+        height: 15px;
+        font-size: 12px;
+        font-weight: 600;
     }
 }

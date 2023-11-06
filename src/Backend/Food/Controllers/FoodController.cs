@@ -12,5 +12,9 @@ namespace Food.Controllers;
 [ApiController]
 public class FoodController : MoldController<Foods, FoodRepository>
 {
-    public FoodController(FoodRepository repository) : base(repository) { }
+    private readonly IFoodRepository _foodRepository;
+    public FoodController(FoodRepository repository, IFoodRepository foodRepository) : base(repository) => _foodRepository = foodRepository;
+
+    [HttpGet("GetByPrice")]
+    public async Task<IActionResult> GetAllFoodByPrice() => Ok(await _foodRepository.GetAllByPrice());
 }

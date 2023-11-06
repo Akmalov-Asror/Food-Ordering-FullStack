@@ -77,12 +77,13 @@
             justify-content: center;
             align-items: end;
             height: 100px;
-
+            gap: 20px;
             a {
                 color: #EA7C69;
                 font-size: 14px;
                 font-weight: 600;
                 cursor: pointer;
+                text-decoration: none;
             }
         }
     }

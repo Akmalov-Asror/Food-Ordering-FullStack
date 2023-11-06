@@ -25,7 +25,6 @@ public class AuditMiddleware
             if (ignoreAttribute is not null)
             {
                 await _next(context);
-
                 return;
             }
 
@@ -50,6 +49,7 @@ public class AuditMiddleware
             auditLog.ResponseStatusCode = context.Response.StatusCode;
             auditLog.ResponseTimestamp = DateTime.UtcNow;
             auditLog.UserName = userName;
+
             await _auditManager.WriteAuditLog(auditLog);
         }
     }

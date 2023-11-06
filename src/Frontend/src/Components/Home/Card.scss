@@ -1,15 +1,58 @@
-.card-row{
+.card-row {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(4 , 1fr) !important;
+    grid-template-columns: repeat(4, 1fr) !important;
     overflow-y: scroll;
-    padding: 70px 0;    
+    padding: 70px 0;
     height: auto;
+    transition: 15s;
+    overflow-x: hidden;
 }
-.card-row::-webkit-scrollbar{
+#load{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 1300px;
+    color: #EA7C69;
+    font-weight: 800;
+    font-size: 30px;
+}
+
+ 
+#loader-wrapper{
+    width: 600px;
+    height: 10px;
+    border: 1px solid #EA7C69;
+    border-radius: 10px;
+    background-color: #1F1D2B;
+    margin: 200px auto;
+    position: relative;
+    div{
+        position: absolute;
+        left: 0;
+        z-index: 0;
+        height: 10px;
+        animation: animatt 1s linear infinite ;
+        background: #EA7C69;
+        opacity: 1;
+    }
+}
+@keyframes animatt {
+    0%{
+        width: 0px;
+    }
+    100%{
+        width: 600px;
+        opacity: 0;
+    }
+}
+  
+.card-row::-webkit-scrollbar {
     display: none;
 }
-.food-card{
+
+.food-card {
     background: #1F1D2B;
     border-radius: 20px;
     width: 240px;
@@ -17,7 +60,8 @@
     position: relative;
     margin: 60px 20px;
     transition: .5s;
-    .card-img{
+
+    .card-img {
         width: 160px;
         height: 160px;
         border-radius: 200px;
@@ -26,25 +70,38 @@
         left: 50%;
         transform: translateX(-50%) translateY(35%);
         top: -50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        img {
+            object-fit: contain;
+            width: 200px;
+        }
     }
-    .card-title{
+
+    .card-title {
         margin-top: 100px;
         text-align: center;
         color: white;
-        h5{
+
+        h5 {
             margin: 0;
             padding: 0;
         }
-        p{
-            margin: 10px  0;
+
+        p {
+            margin: 10px 0;
             padding: 0;
         }
-        p:last-child{
+
+        p:last-child {
             color: grey;
         }
     }
-    .card-buy{
-        button{
+
+    .card-buy {
+        button {
             margin-top: 10px;
             height: 46px;
             width: 180px;
@@ -58,89 +115,45 @@
             transform: translateX(-50%);
             transition: .5s;
         }
-        button:focus{
+
+        button:focus {
             background: white;
             color: #EA7C69;
-        }
-    }
-}
-.food-card:hover{
-    scale: 1.04;
-}
-// iphone 12pro
-@media (max-width: 726px), (max-height: 850px) {
-    .card-row{
-        margin-top: 30px;
-        grid-template-columns: repeat(1 , 1fr);
-        overflow-y: scroll;
-        padding: 70px 0;
-        padding-bottom: 130px;
-        height: 600px;
-    }
-    .food-card{
-        background: #1F1D2B;
-        border-radius: 20px;
-        width: 240px;
-        height: 300px;
-        position: relative;
-        margin: 60px 0px;
-        left: 50%;
-        transform: translateX(-50%);
-        .card-img{
-            width: 160px;
-            height: 160px;
-            border-radius: 200px;
-            background-color: grey;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%) translateY(35%);
-            top: -50%;
-        }
-        .card-title{
-            margin-top: 100px;
-            text-align: center;
-            color: white;
-            h5{
-                margin: 0;
-                padding: 0;
-            }
-            p{
-                margin: 10px  0;
-                padding: 0;
-            }
-            p:last-child{
-                color: grey;
-            }
-        }
-        .card-buy{
-            button{
-                margin-top: 10px;
-                height: 46px;
-                width: 180px;
-                border: none;
-                border-radius: 10px;
-                outline: none;
-                background: #EA7C69;
-                color: white;
-                position: relative;
-                left: 50%;
-                transform: translateX(-50%);
-            }
+
         }
     }
 }
 
+.loading-item-card {
+    position: relative;
+    left: 200%;
+    transform: translateX(-50%);
+    width: 40% !important;
+}
+
+.food-card:hover {
+    scale: 1.04;
+}
+
+
 //iphone ..
-@media (max-width: 726px){
-    .card-row{
+@media (max-width: 726px) {
+    .loading-item {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .card-row {
         margin-top: 30px;
-        grid-template-columns: repeat(1 , 1fr) !important;
+        grid-template-columns: repeat(1, 1fr) !important;
         padding: 70px 0;
         overflow-y: hidden;
         padding-bottom: 50px;
         height: auto;
     }
-    .food-card{
+
+    .food-card {
         background: #1F1D2B;
         border-radius: 20px;
         width: 240px;
@@ -149,5 +162,46 @@
         margin: 60px 0px;
         left: 50%;
         transform: translateX(-50%);
+    }
+    #loader-wrapper{
+        width: 200px;
+        height: 10px;
+        border: 1px solid #EA7C69;
+        border-radius: 10px;
+        background-color: #1F1D2B;
+        margin: 200px auto;
+        position: relative;
+        div{
+            position: absolute;
+            left: 0;
+            height: 10px;
+            animation: animatt 1s linear infinite ;
+            background: #EA7C69;
+            opacity: 1;
+        }
+    }
+    @keyframes animatt {
+        0%{
+            width: 0px;
+        }
+        100%{
+            width: 200px;
+            opacity: 0;
+        }
+    }
+    .notificaton{
+        width: 250px !important;
+        font-size: 12px !important;
+        height: 60px !important;
+    }
+    #load{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        width: 300px;
+        color: #EA7C69;
+        font-weight: 800;
+        font-size: 25px;
     }
 }

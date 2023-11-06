@@ -26,10 +26,7 @@ public class AuthController : ControllerBase
     public ActionResult<string> GetMyName() => Ok(CreateTokenInJwtAuthorizationFromUsers.GetMyId());
 
     [HttpGet("ListUsers"), Authorize]
-    public async Task<IActionResult> GetAllUsers()
-    {
-          return Ok(await _authService.GetAllUsers());
-    }
+    public async Task<IActionResult> GetAllUsers() => Ok(await _authService.GetAllUsers());
 
     [HttpPost("register")]
     [IgnoreAudit("Some reason")]

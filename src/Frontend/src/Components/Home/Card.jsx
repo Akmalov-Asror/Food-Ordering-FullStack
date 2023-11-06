@@ -1,127 +1,98 @@
 import React, { useState, useRef, useEffect } from 'react';
 import "./Card.scss"
-const Card = (props) => {
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Data from '../../Utils/Data';
+import ReactLoading from 'react-loading';
+import { useDispatch, useSelector } from 'react-redux'
+import { getFoodsFromLocalStorage } from '../../Redux/UserFood';
+const Card = (props, { type, color, className }) => {
+    const switcher = useSelector(state => state.Foods.foodArray)
+    const dispatch = useDispatch()
+    const notify = () => toast.success('In addition, would you like more?');
+    const [foods, setFoods] = useState([])
+    const [animation, setAnimation] = useState(true)
+    async function run() {
+        let response = await Data.GetCategoriy()
+        if (response !== undefined) {
+            if (props.categoriyId !== undefined || props.categoriyId !== null || props.categoriyId !== 0) {
+                setFoods(response[props?.categoriyId - 1].food)
+            }
+        }
+        else {
+            setFoods([])
+        }
+    }
+    useEffect(() => {
+        run()
+    }, [props.categoriyId])
+    useEffect(() => {
+        const delay = 1000;
+        var interval;
+        if (foods?.length > 0 || foods !== undefined) {
+            interval = setTimeout(() => {
+                setAnimation(false)
+            }, delay)
+        }
+
+        return () => {
+            setAnimation(true)
+            clearInterval(interval)
+        }
+    }, [foods])
+    const filterFoods = foods.filter(i => {
+        return i.name.toLowerCase().includes(props.search.toLowerCase())
+    })
+    async function pushFoodArray( foodId) {
+        console.log(foodId);
+        var data = {
+            Id: foodId.id,
+            Name: foodId.name,
+            Count: 1
+        }
+        var list = await Data.PostFoods(foodId.id, data)
+        console.log(list);  
+    }
 
     return (
         <div>
-            <div    className='card-row'>
-                <div className='food-card'>
-                    <div className='card-img'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='card-title'>
-                        <h5>Spicy seasoned seafood noodles</h5>
-                        <p>$ 2.29</p>
-                        <p>20 Bowls available</p>
-                    </div>
-                    <div className='card-buy'>
-                        <button>Add</button>
-                    </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="dark"
+                className="notificaton" />
+            {animation ? <>
+                <div id="loader-wrapper">
+                    <div></div>
                 </div>
-
-                <div className='food-card'>
-                    <div className='card-img'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='card-title'>
-                        <h5>Spicy seasoned seafood noodles</h5>
-                        <p>$ 2.29</p>
-                        <p>20 Bowls available</p>
-                    </div>
-                    <div className='card-buy'>
-                        <button>Add</button>
-                    </div>
-                </div>
-
-
-                <div className='food-card'>
-                    <div className='card-img'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='card-title'>
-                        <h5>Spicy seasoned seafood noodles</h5>
-                        <p>$ 2.29</p>
-                        <p>20 Bowls available</p>
-                    </div>
-                    <div className='card-buy'>
-                        <button>Add</button>
-                    </div>
-                </div>
-
-
-                <div className='food-card'>
-                    <div className='card-img'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='card-title'>
-                        <h5>Spicy seasoned seafood noodles</h5>
-                        <p>$ 2.29</p>
-                        <p>20 Bowls available</p>
-                    </div>
-                    <div className='card-buy'>
-                        <button>Add</button>
-                    </div>
-                </div>
-
-
-
-                <div className='food-card'>
-                    <div className='card-img'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='card-title'>
-                        <h5>Spicy seasoned seafood noodles</h5>
-                        <p>$ 2.29</p>
-                        <p>20 Bowls available</p>
-                    </div>
-                    <div className='card-buy'>
-                        <button>Add</button>
-                    </div>
-                </div>
-
-
-
-
-                <div className='food-card'>
-                    <div className='card-img'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='card-title'>
-                        <h5>Spicy seasoned seafood noodles</h5>
-                        <p>$ 2.29</p>
-                        <p>20 Bowls available</p>
-                    </div>
-                    <div className='card-buy'>
-                        <button>Add</button>
-                    </div>
-                </div>
-                <div className='food-card'>
-                    <div className='card-img'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='card-title'>
-                        <h5>Spicy seasoned seafood noodles</h5>
-                        <p>$ 2.29</p>
-                        <p>20 Bowls available</p>
-                    </div>
-                    <div className='card-buy'>
-                        <button>Add</button>
-                    </div>
-                </div>
-                <div className='food-card'>
-                    <div className='card-img'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='card-title'>
-                        <h5>Spicy seasoned seafood noodles</h5>
-                        <p>$ 2.29</p>
-                        <p>20 Bowls available</p>
-                    </div>
-                    <div className='card-buy'>
-                        <button>Add</button>
-                    </div>
-                </div>
-            </div>
+            </>
+                : <div className='card-row'>
+                    {filterFoods?.length > 0 ? foods?.map((iteam, index) => {
+                        return (
+                            <div key={index} className='food-card'>
+                                <div style={{ backgroundImage: `url(${iteam.imageUrl})` }} className='card-img'>
+                                </div>
+                                <div className='card-title'>
+                                    <h5>{iteam.name}</h5>
+                                    <p>$ 2.29</p>
+                                    <p>{iteam.count} Bowls available</p>
+                                </div>
+                                <div className='card-buy'>
+                                    <button onClick={() => { notify(); pushFoodArray(iteam) }}>Add</button>
+                                </div>
+                            </div>
+                        )
+                    }) : <div id="load">
+                         Нет продуктов
+                    </div>}
+                </div>}
 
         </div>
     );

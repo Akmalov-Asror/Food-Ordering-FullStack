@@ -9,14 +9,13 @@ export default function Porfile() {
     const [isLoading, setIsLoading] = useState(true);
     const [offcanvas, setOffcanvas] = useState(false)
     const [userEmail, setUserEmail] = useState("")
-    const [ orders, setOrders] = useState("false")
+    const [ orders, setOrders] = useState(false)
     function closeOffcanvas() {
         sessionStorage.setItem("profil", false)
         navigate("/")
     }
     function bootstrapBnt() {
         let cur = sessionStorage.getItem("account")
-
         setOffcanvas(true)
         if (cur !== "") {
             setOffcanvas(cur)
@@ -26,9 +25,14 @@ export default function Porfile() {
         if(orders) setOrders(false)
         else setOrders(true)
     }
+    function logOut(){
+        localStorage.setItem("email", "")
+        navigate("/")
+    }
     useEffect(() => {
         let email = localStorage.getItem("email")
-        if (email.length > 0 && email !== null && email !== undefined) {
+        console.log(email);
+        if ( email !== undefined || email !== null) {
             setUserEmail(email)
         }
         const redirectTimeout = setTimeout(() => {
@@ -64,7 +68,7 @@ export default function Porfile() {
                         <div className='edit-account'>
                             <div>
                                 <div>
-                                    {userEmail[0]}
+                                    {userEmail !== null && <>{userEmail[0]}</>}
                                 </div>
                             </div>
                             <div>
@@ -72,6 +76,7 @@ export default function Porfile() {
                             </div>
                             <div>
                                 <a>Edit profile</a>
+                                <a className='text-danger ' onClick={logOut}>Log out <i class="bi bi-box-arrow-right"></i></a>
                             </div>
                         </div>
 
@@ -80,34 +85,6 @@ export default function Porfile() {
                         </div>
 
                         <div className={`${orders ? "active-orders" : ""} orders`}>
-                            <div className='orders-card'>
-                                <div>
-                                    <h3>Orders #24342</h3> 
-                                    <p>Tuesday, 2 Feb 2021</p>
-                                </div>
-                            </div>
-
-                            <div className='orders-card'>
-                                <div>
-                                    <h3>Orders #24342</h3> 
-                                    <p>Tuesday, 2 Feb 2021</p>
-                                </div>
-                            </div>
-
-                            <div className='orders-card full-container'>
-                                <div>
-                                    <h3>Orders #24342</h3> 
-                                    <p>Tuesday, 2 Feb 2021</p>
-                                </div>
-                            </div>
-
-                            <div className='orders-card'>
-                                <div>
-                                    <h3>Orders #24342</h3> 
-                                    <p>Tuesday, 2 Feb 2021</p>
-                                </div>
-                            </div>
-
                             <div className='orders-card'>
                                 <div>
                                     <h3>Orders #24342</h3> 

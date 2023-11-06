@@ -49,9 +49,11 @@ public class AuthService : IAuthService
 
         if (user != null)
         {
+
             var roles = await _userManager.GetRolesAsync(user);
             var roleClaims = roles.Select(role => new Claim(ClaimTypes.Role, role)).ToList();
             roleClaims.Add(new Claim(ClaimTypes.Name, request.Name));
+            roleClaims.Add(new Claim(ClaimTypes.Email, request.Email));
             var token = CreateTokenInJwtAuthorizationFromUsers.CreateToken(user, roleClaims);
             return token;
         }

@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+    
+  foodbackend:
+    image: foodbackend
+    depends_on:
+      - data_db
+    container_name: foodbackend
+    ports: 
+      - "1001:80"
+    build:
+      context: .
+      dockerfile: ./Food/Dockerfile
+    networks:
+      - dev
+
+  data_db:
+    image: postgres:latest
+    container_name: data_db
+    environment:
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - "pgadmin:/var/lib/postgresql/data"
+    networks:
+      - dev
+
+networks:
+  dev:
+    driver: bridge 
+
+volumes:
+  customer_data:
+    driver: local
+  pgadmin:
+    driver: local

@@ -1,4 +1,5 @@
 ﻿using Food.Entities.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Food.Entities;
 

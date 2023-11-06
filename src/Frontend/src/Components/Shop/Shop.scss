@@ -80,12 +80,8 @@
 }
 
 .purchased-foods {
-    width: calc(100% - 20px);
-    margin: 0 auto;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 90vh;
+    width: 100%;
+    height: auto;
 
     .order-div {
         div:first-child {
@@ -262,7 +258,7 @@
     }
 
     .confirm-payment {
-        padding: 30px 0;
+        padding: 20px 0;
 
         button {
             width: 100%;
@@ -419,7 +415,11 @@
             .select-row {
                 border: none !important;
                 padding: 20px 0;
-
+                        p{
+                            font-size: 16px;
+                            position: relative;
+                            top: 5px;
+                        }
                 div {
                     color: white;
                     height: 100%;
@@ -471,5 +471,46 @@
             color: white;
             border: none;
         }
+    }
+}
+
+@media (max-width:726px) {
+    .offcanvass {
+        position: fixed;
+        background: #252836;
+        overflow-y: auto !important;
+        
+    }
+    
+    .offcanvass::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .active-offcanvas {
+        width:100% !important;
+        overflow: hidden;
+        padding: 0 15px;
+    }
+    .confirm-payment{
+        height: 200px !important;
+    }
+    .active-filter{
+        display: none !important;
+    }
+    .purchased-foods{
+        padding: 10px 0;
+      width: 100% !important;
+    //   margin-left: 100px !important;
+    }
+    .emptyBox {
+        button {
+            bottom: 60px;
+        }
+        img{
+            top: 40%;
+        }
+    }
+    .confirm-buy{
+        height: 200px;
     }
 }
