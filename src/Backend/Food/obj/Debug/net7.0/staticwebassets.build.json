@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NGhK4SMcQj+koieHdXOp34H1GWavh+zvl3/Cwmx1iXg=",
+  "Hash": "cC5DOW/ewF+UoaXNdnEIRvQ797ZQRozpufDAwgmZ7Hk=",
   "Source": "Food",
   "BasePath": "_content/Food",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "Food\\wwwroot",
       "Source": "Food",
-      "ContentRoot": "C:\\Users\\User\\Desktop\\Git\\FoodFullstack\\Food\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\sf\\Food-Ordering-FullStack\\src\\Backend\\Food\\wwwroot\\",
       "BasePath": "_content/Food",
       "Pattern": "**"
     }

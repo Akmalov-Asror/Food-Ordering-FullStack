@@ -1,9 +1,8 @@
-﻿using FluentValidation.Results;
-using Food.Data;
+﻿using Food.Data;
 using Food.Dto_s;
-using Food.Entities;
 using Food.Interface;
 using Microsoft.EntityFrameworkCore;
+using Foods = Food.Entities.Food;
 
 namespace Food.Repositories;
 public partial class FoodRepository : IFoodRepository
@@ -32,7 +31,7 @@ public partial class FoodRepository : IFoodRepository
 
     public async Task<Entities.Food> CreateFoodByCategory(FoodDto foodDto, int categoryId)
     {
-        var findCategory = await _context.Category.FirstOrDefaultAsync(x => x.Id == categoryId);
+        var findCategory = await _context.Category.Include(category => category.Food).FirstOrDefaultAsync(x => x.Id == categoryId);
         if (findCategory != null)
         {
             var food = new Entities.Food
@@ -76,5 +75,43 @@ public partial class FoodRepository : IFoodRepository
         categoryList = categoryList.TrimEnd(' ', ',');
 
         throw new BadHttpRequestException(categoryList);
+    }
+
+    public async Task<Foods> CreateFoodAddWithCategory(FoodAddWithCategory foodAddWithCategory)
+    {
+        var checkCategory = await _context.Category.Include(x => x.Food).FirstOrDefaultAsync(c => c.Name == foodAddWithCategory.Name);
+        var check = await _context.Foods.FirstOrDefaultAsync(x => x.Id == foodAddWithCategory.FoodId);
+
+        if (checkCategory is not null)
+        {
+            if (foodAddWithCategory.FoodCount is not 0)
+            {
+                var counts = check.Count - foodAddWithCategory.FoodCount;
+                check.Count = counts;
+                _context.Foods.Add(check);
+                await _context.SaveChangesWithAudit(true);
+            }
+        }
+        else
+        {
+            var categories = await _context.Category.ToListAsync();
+            if (categories == null || categories.Count == 0)
+            {
+                throw new BadHttpRequestException("No categories found");
+            }
+
+            string categoryList = "Please Choose from the following categories: \n";
+            foreach (var category in categories)
+            {
+                categoryList += $"{category.Id}, ";
+                categoryList += $"{category.Name}, ";
+            }
+
+            categoryList = categoryList.TrimEnd(' ', ',');
+
+            throw new BadHttpRequestException(categoryList);
+        }
+        var result = await _context.Foods.FirstOrDefaultAsync(x => x.Id == foodAddWithCategory.FoodId);
+        return result ?? new Entities.Food();
     }
 }

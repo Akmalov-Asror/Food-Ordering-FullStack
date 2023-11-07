@@ -20,4 +20,7 @@ public class FoodController : MoldController<Foods, FoodRepository>
 
     [HttpPost("CreateFoodByCategory")]
     public async Task<IActionResult> CreateFoodByCategory(FoodDto foodDto, int categoryId) => Ok(await _foodRepository.CreateFoodByCategory(foodDto, categoryId));
+
+    [HttpPost("CreateForOrder")]
+    public async Task<IActionResult> CreateFoodForUser(FoodAddWithCategory foodAddWithCategory) => Ok(await _foodRepository.CreateFoodAddWithCategory(foodAddWithCategory));
 }
