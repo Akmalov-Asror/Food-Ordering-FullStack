@@ -3195,23 +3195,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Users\\aakhmatov\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\sf\\Food-Ordering-FullStack\\src\\Backend\\Food\\Food.csproj",
+      "projectUniqueName": "C:\\Users\\aakhmatov\\Desktop\\Docker-project\\Food-Ordering-FullStack\\src\\Backend\\Food\\Food.csproj",
       "projectName": "Food",
-      "projectPath": "C:\\Users\\User\\Desktop\\sf\\Food-Ordering-FullStack\\src\\Backend\\Food\\Food.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\sf\\Food-Ordering-FullStack\\src\\Backend\\Food\\obj\\",
+      "projectPath": "C:\\Users\\aakhmatov\\Desktop\\Docker-project\\Food-Ordering-FullStack\\src\\Backend\\Food\\Food.csproj",
+      "packagesPath": "C:\\Users\\aakhmatov\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\aakhmatov\\Desktop\\Docker-project\\Food-Ordering-FullStack\\src\\Backend\\Food\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aakhmatov\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3331,7 +3331,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

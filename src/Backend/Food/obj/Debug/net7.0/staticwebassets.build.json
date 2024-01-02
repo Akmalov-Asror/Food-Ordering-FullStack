@@ -1,19 +1,11 @@
 {
   "Version": 1,
-  "Hash": "cC5DOW/ewF+UoaXNdnEIRvQ797ZQRozpufDAwgmZ7Hk=",
+  "Hash": "NGDuoa1pCGD5DB3swI0BzOwCsLGsI6GI7FukrxMmlQc=",
   "Source": "Food",
   "BasePath": "_content/Food",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [
-    {
-      "Name": "Food\\wwwroot",
-      "Source": "Food",
-      "ContentRoot": "C:\\Users\\User\\Desktop\\sf\\Food-Ordering-FullStack\\src\\Backend\\Food\\wwwroot\\",
-      "BasePath": "_content/Food",
-      "Pattern": "**"
-    }
-  ],
+  "DiscoveryPatterns": [],
   "Assets": []
 }

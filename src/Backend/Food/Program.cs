@@ -115,17 +115,10 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-/*if (app.Services.GetService<AppDbContext>() != null)
-{
-    var db = app.Services.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
-}*/
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-//app.UseMiddleware<AuditMiddleware>();
 app.MapControllers();
 
-app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>().Database.Migrate();
 app.Run();
